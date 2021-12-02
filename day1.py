@@ -1,15 +1,21 @@
 import numpy as np
 
-if __name__=='__main__':
-	with open("inputs/day1.txt", "r") as f:
-		data = f.read()
+import utils
 
-	depths = np.array([int(d) for d in data.split('\n')[:-1]])
+lines = utils.get_input(1)
+depths = np.array([int(d) for d in lines])
 
-	increases = ((depths-np.roll(depths,1))>0).sum()
-	print("part1:", increases)
+# PART 1
 
-	windowed_depths = (depths+np.roll(depths,1)+np.roll(depths,2))[2:]
-	windowed_increases = ((windowed_depths-np.roll(windowed_depths,1))>0).sum()
-	print("part2:", windowed_increases)
+increases = ((depths-np.roll(depths,1))>0).sum()
+
+print("part1:", increases)
+
+
+# PART 2
+
+windowed_depths = (depths+np.roll(depths,1)+np.roll(depths,2))[2:]
+windowed_increases = ((windowed_depths-np.roll(windowed_depths,1))>0).sum()
+
+print("part2:", windowed_increases)
 
